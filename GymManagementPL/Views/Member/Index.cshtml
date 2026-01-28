@@ -1,0 +1,194 @@
+﻿@model IEnumerable<GetAllMembersVM>
+@{
+	ViewData["Title"] = "Members";
+}
+
+    <div class="container">
+
+	@if (TempData["SuccessMessage"] != null)
+    {
+        <div id="Alert" class="alert alert-success alert-dismissible fade show">
+            <i class="bi bi-check-circle-fill me-2"></i>
+            @TempData["SuccessMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+
+    }
+    else if (TempData["ErrorMessage"] != null)
+    {
+        <div id="Alert" class="alert alert-danger alert-dismissible fade show">
+            <i class="bi bi-exclamation-triangle-fill me-2"></i>
+			@TempData["ErrorMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+        
+    }
+            <div class="container">
+                <header class="d-flex justify-content-end mt-5 mb-4 align-items-center">
+                    <a asp-controller="Member" asp-action="Create" class="btn btn-fill fw-medium rounded-pill px-3 py-3">
+                        + Add Member
+                    </a>
+                </header>
+
+
+              @if (Model != null && Model.Any())
+            {
+                <div class="table-responsive " style="overflow: visible;">
+                    <table class="table table-borderless">
+                        <thead>
+                            <tr>
+                                <th><span>@nameof(GetAllMembersVM.Photo)</span></th>
+                                <th><span>@nameof(GetAllMembersVM.Name)</span></th>
+                                <th><span>@nameof(GetAllMembersVM.Email)</span></th>
+                                <th><span>@nameof(GetAllMembersVM.Gender)</span></th>
+                                <th><span>@nameof(GetAllMembersVM.Phone)</span></th>
+                                <th><span>Action</span></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach(var member in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        <span class="avatar">
+                                            @if (!string.IsNullOrEmpty(member.Photo))
+                                            {
+                                                <img src="~/images/@member.Photo" alt="@member.Name" class="rounded-circle"
+                                                     style="width: 40px; height: 40px;" />
+                                            }
+                                            else
+                                            {
+                                                <img src="~/images/Ellipse 7.jpg" alt="Default Avatar" class="rounded-circle"
+                                                     style="width: 40px; height: 40px;" />
+                                            }
+                                        </span>
+                                    </td>
+                                    <td><span>@member.Name</span></td>
+                                    <td><span>@member.Email</span></td>
+                                    <td><span>@member.Gender</span></td>
+                                    <td><span>@member.Phone</span></td>
+                                    <td class="action position-relative">
+                                        <div class="dropdown">
+                                            <button class="btn btn-link p-0 border-0" type="button"
+                                                    id="dropdownMenuButton-member.Id" data-bs-toggle="dropdown"
+                                                    aria-expanded="false">
+                                                <img src="~/images/action dots.jpg" alt="action icon" />
+                                            </button>
+                                            <ul class="dropdown-menu dropdown-menu-start"
+                                                aria-labelledby="dropdownMenuButton-member.Id">
+                                                <li>
+                                                    <a asp-controller="Member" asp-action="MemberDetails" asp-route-Id ="@member.Id"
+                                                       class="dropdown-item d-flex align-items-center gap-3">
+                                                        <img src="~/images/info 1.jpg" alt="info icon"
+                                                             style="width: 20px; height: 20px;" />
+                                                        <span>View Member Data</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a asp-controller="Member" asp-action="HealthRecordDetails" asp-route-Id="@member.Id"
+                                                       class="dropdown-item d-flex align-items-center gap-3">
+                                                        <img src="~/images/info 1.jpg" alt="info icon"
+                                                             style="width: 20px; height: 20px;" />
+                                                        <span>View Health Record Data</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <hr class="dropdown-divider">
+                                                </li>
+                                                <li>
+                                                    <a asp-controller="Member" asp-action="MemberEdit" asp-route-Id="@member.Id"
+                                                       class="dropdown-item d-flex align-items-center gap-3">
+                                                        <img src="~/images/edit.jpg" alt="edit icon"
+                                                             style="width: 20px; height: 20px;" />
+                                                        <span>Edit Member Data</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <hr class="dropdown-divider">
+                                                </li>
+                                                <li>
+                                                    @* <a asp-controller="Member" asp-action="MemberDelete" asp-route-Id="@member.Id"
+                                                       class="dropdown-item d-flex align-items-center gap-3 text-danger">
+                                                        <img src="~/images/x-circle 1.jpg" alt="delete icon"
+                                                             style="width: 20px; height: 20px;" />
+                                                        <span>Delete</span>
+                                                    </a> *@
+                                                    <button type="button"
+                                                            class="dropdown-item d-flex align-items-center gap-3 text-danger"
+                                                            data-bs-toggle="modal"
+                                                            data-bs-target="#deleteMemberModal"
+                                                            data-member-id="@member.Id">
+                                                        <img src="~/images/x-circle 1.jpg" alt="delete icon" style="width: 20px; height: 20px;" />
+                                                        <span>Delete</span>
+                                                    </button>
+
+
+
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+
+
+                        </tbody>
+                    </table>
+                </div>
+            }
+
+        else
+        {
+            <div class="text-center py-5">
+                <i class="bi bi-person-workspace display-1 text-muted"></i>
+                <h4 class="mt-3 text-muted">No Members Available</h4>
+                <p class="text-muted">Add your first Member to get started</p>
+            </div>
+        }
+    </div>
+    </div>
+
+
+
+
+
+<div class="modal fade" id="deleteMemberModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content p-4">
+            <div class="modal-body text-center">
+                <p class="fs-4 text-primary-color">
+                    Are you sure you want to delete this member?
+                </p>
+
+                <div class="alert alert-warning text-start">
+                    <strong>Warning!</strong> This action cannot be undone. All member data will be permanently deleted.
+                </div>
+
+                <form asp-controller="Member" asp-action="DeleteConfirmed" method="post">
+                    <input type="hidden" readonly name="id" id="deleteMemberId" />
+
+                    <div class="d-flex justify-content-between gap-3 mt-4">
+                        <button type="button" class="btn btn-outline-secondary flex-fill"
+                                data-bs-dismiss="modal">
+                            NO
+                        </button>
+                        <button type="submit" class="btn btn-danger flex-fill">
+                            Yes
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    var deleteModal = document.getElementById('deleteMemberModal');
+    deleteModal.addEventListener('show.bs.modal', function (event) {
+        var button = event.relatedTarget;
+        var memberId = button.getAttribute('data-member-id');
+
+        document.getElementById('deleteMemberId').value = memberId;
+    });
+</script>
