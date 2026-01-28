@@ -7,7 +7,7 @@ A backend-focused Gym Management System built with ASP.NET Core MVC, following C
 
 🚀 Key Features
 
-Booking Management
+1- Booking Management
 Manage sessions with categories and trainers.
 
 Book members for upcoming sessions.
@@ -20,7 +20,7 @@ Calculate available slots dynamically.
 
 Views for Upcoming Sessions and Ongoing Sessions with action buttons.
 
-Membership Management
+2- Membership Management
 Create memberships for members with active plans.
 
 Cancel active memberships.
@@ -31,7 +31,7 @@ Dropdown lists for members and plans integrated into Views.
 
 Validation for member existence, plan existence, and active membership check.
 
-User & Authentication Management
+3- User & Authentication Management
 Register and login users using ASP.NET Core Identity.
 
 Role-based access control (RBAC) for Admin and SuperAdmin.
@@ -40,7 +40,7 @@ Retrieve users by roles.
 
 Password validation and role assignment during registration.
 
-Technical Highlights
+4- Technical Highlights
 Clean Architecture: Clear separation of Presentation, Business Logic, and Data Access layers.
 
 Repositories & Unit of Work: Generic repositories with Unit of Work pattern.
