@@ -2,6 +2,9 @@ Gym Management System | ASP.NET Core MVC
 
 A backend-focused Gym Management System built with ASP.NET Core MVC, following Clean Architecture and real-world business logic. The system goes beyond CRUD operations, including booking management, membership management, user management, and attendance tracking.
 
+---
+
+
 🚀 Key Features
 
 Booking Management
@@ -50,6 +53,8 @@ Validation & Alerts: Server-side and client-side validation with Bootstrap alert
 
 Responsive Views: Built with Bootstrap 5, compatible with desktop and mobile.
 
+---
+
 
 ⚙️ Technologies & Tools
 
@@ -68,6 +73,9 @@ Bootstrap 5 & Select2
 Dependency Injection
 
 Unit of Work & Generic Repository Pattern
+
+---
+
 
 ✅ Business Logic Implementation
 
@@ -99,6 +107,9 @@ Register new users with roles.
 Validate login credentials.
 
 Retrieve users based on roles.
+
+---
+
 
 ⚡ Installation & Setup
 
